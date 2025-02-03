@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import Mermaid from './Mermaid';
+import ClusterDiagram from './ClusterDiagram';
 
 const Section = ({ title, children, defaultOpen = true }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -32,45 +32,52 @@ const ClusterPresentation = () => {
 
       {/* Cluster Architecture Visualization */}
       <Section title="Cluster Architecture Visualization" defaultOpen={false}>
-        <Card>
-          <CardContent className="p-6">
-            <Mermaid
-              chart={`flowchart TB
-                User([Student/User])
-                FrontDesk[Front Desk<br>Login Node]
-                Librarian{SLURM<br>Librarian}
-                Queue[Waiting List<br>Job Queue]
-                StudyRooms[Study Rooms<br>Compute Nodes]
-                
-                User -->|"Walk in"| FrontDesk
-                FrontDesk -->|"Submit reservation<br>(sbatch)"| Librarian
-                FrontDesk -->|"Request room now<br>(salloc)"| Librarian
-                Librarian -->|"Add to list"| Queue
-                Queue -->|"Assign when available"| StudyRooms
-                
-                User -->|"Check status<br>(squeue)"| Queue
-                User -->|"Cancel reservation<br>(scancel)"| Queue
-                
-                style FrontDesk fill:#f9f,stroke:#333
-                style Librarian fill:#bbf,stroke:#333
-                style StudyRooms fill:#bfb,stroke:#333
-                style Queue fill:#ffb,stroke:#333`}
-            />
-          </CardContent>
-        </Card>
+        <div className="mb-6">
+            <ClusterDiagram />
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-6">
+        <div className="grid md:grid-cols-2 gap-6 mt-8 bg-gray-50 p-6 rounded-lg shadow-inner">
           <Card>
             <CardHeader>
               <CardTitle>Understanding the Flow</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
-                <li>1️⃣ <strong>You start at the Front Desk</strong> (Login Node)</li>
-                <li>2️⃣ <strong>Submit your request</strong> to the Librarian (SLURM)</li>
-                <li>3️⃣ <strong>Wait in queue</strong> if resources are busy</li>
-                <li>4️⃣ <strong>Get assigned</strong> to Study Rooms (Compute Nodes)</li>
-                <li>5️⃣ <strong>Monitor or cancel</strong> your reservation as needed</li>
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <span className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center text-blue-800 font-bold flex-shrink-0">1</span>
+                  <div>
+                    <strong className="text-blue-900">Connect to Login Node</strong>
+                    <p className="mt-1 text-sm">Your entry point to the cluster</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center text-blue-800 font-bold flex-shrink-0">2</span>
+                  <div>
+                    <strong className="text-blue-900">Submit Job Request</strong>
+                    <p className="mt-1 text-sm">SLURM schedules your computation</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center text-blue-800 font-bold flex-shrink-0">3</span>
+                  <div>
+                    <strong className="text-blue-900">Job Queuing</strong>
+                    <p className="mt-1 text-sm">Wait for resources to become available</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center text-blue-800 font-bold flex-shrink-0">4</span>
+                  <div>
+                    <strong className="text-blue-900">Resource Assignment</strong>
+                    <p className="mt-1 text-sm">Get access to compute nodes</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center text-blue-800 font-bold flex-shrink-0">5</span>
+                  <div>
+                    <strong className="text-blue-900">Job Management</strong>
+                    <p className="mt-1 text-sm">Monitor or cancel as needed</p>
+                  </div>
+                </li>
               </ul>
             </CardContent>
           </Card>
@@ -79,12 +86,44 @@ const ClusterPresentation = () => {
               <CardTitle>Key Commands in Context</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
-                <li><code className="bg-blue-100 px-2 py-1 rounded">sbatch</code>: Submit a reservation</li>
-                <li><code className="bg-blue-100 px-2 py-1 rounded">salloc</code>: Request immediate access</li>
-                <li><code className="bg-blue-100 px-2 py-1 rounded">squeue</code>: Check waiting list</li>
-                <li><code className="bg-blue-100 px-2 py-1 rounded">scancel</code>: Cancel reservation</li>
-              </ul>
+              <div className="space-y-4">
+                <div className="p-3 bg-gradient-to-r from-blue-50 to-transparent rounded-lg hover:from-blue-100 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <code className="bg-white px-3 py-1.5 rounded-md font-mono text-blue-800 min-w-[80px] text-center shadow-sm">sbatch</code>
+                    <div>
+                      <div className="font-medium text-blue-900">Submit a batch job</div>
+                      <div className="text-sm text-gray-600">Schedule a script for background processing</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-3 bg-gradient-to-r from-blue-50 to-transparent rounded-lg hover:from-blue-100 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <code className="bg-white px-3 py-1.5 rounded-md font-mono text-blue-800 min-w-[80px] text-center shadow-sm">salloc</code>
+                    <div>
+                      <div className="font-medium text-blue-900">Request interactive session</div>
+                      <div className="text-sm text-gray-600">Get immediate access to compute resources</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-3 bg-gradient-to-r from-blue-50 to-transparent rounded-lg hover:from-blue-100 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <code className="bg-white px-3 py-1.5 rounded-md font-mono text-blue-800 min-w-[80px] text-center shadow-sm">squeue</code>
+                    <div>
+                      <div className="font-medium text-blue-900">View job queue</div>
+                      <div className="text-sm text-gray-600">Monitor status of all submitted jobs</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-3 bg-gradient-to-r from-blue-50 to-transparent rounded-lg hover:from-blue-100 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <code className="bg-white px-3 py-1.5 rounded-md font-mono text-blue-800 min-w-[80px] text-center shadow-sm">scancel</code>
+                    <div>
+                      <div className="font-medium text-blue-900">Cancel job</div>
+                      <div className="text-sm text-gray-600">Stop a running or queued job</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
