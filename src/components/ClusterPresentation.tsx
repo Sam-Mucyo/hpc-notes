@@ -1,12 +1,25 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+'use client';
 
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="mb-12">
-    <h2 className="text-2xl font-bold mb-6 text-blue-800 border-b pb-2">{title}</h2>
-    {children}
-  </div>
-);
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import Mermaid from './Mermaid';
+
+const Section = ({ title, children, defaultOpen = true }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="mb-12">
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="w-full text-left flex justify-between items-center py-2 text-2xl font-bold text-blue-800 border-b pb-2 hover:text-blue-600 transition-colors"
+      >
+        <span>{title}</span>
+        <span className="text-xl">{isOpen ? '▼' : '▶'}</span>
+      </button>
+      {isOpen && children}
+    </div>
+  );
+};
 
 const ClusterPresentation = () => {
   return (
@@ -16,6 +29,66 @@ const ClusterPresentation = () => {
         <h1 className="text-4xl font-bold text-blue-900 mb-4">Introduction to Cluster Computing</h1>
         <p className="text-xl text-gray-700">A guide to understanding cluster computing fundamentals</p>
       </div>
+
+      {/* Cluster Architecture Visualization */}
+      <Section title="Cluster Architecture Visualization" defaultOpen={false}>
+        <Card>
+          <CardContent className="p-6">
+            <Mermaid
+              chart={`flowchart TB
+                User([Student/User])
+                FrontDesk[Front Desk<br>Login Node]
+                Librarian{SLURM<br>Librarian}
+                Queue[Waiting List<br>Job Queue]
+                StudyRooms[Study Rooms<br>Compute Nodes]
+                
+                User -->|"Walk in"| FrontDesk
+                FrontDesk -->|"Submit reservation<br>(sbatch)"| Librarian
+                FrontDesk -->|"Request room now<br>(salloc)"| Librarian
+                Librarian -->|"Add to list"| Queue
+                Queue -->|"Assign when available"| StudyRooms
+                
+                User -->|"Check status<br>(squeue)"| Queue
+                User -->|"Cancel reservation<br>(scancel)"| Queue
+                
+                style FrontDesk fill:#f9f,stroke:#333
+                style Librarian fill:#bbf,stroke:#333
+                style StudyRooms fill:#bfb,stroke:#333
+                style Queue fill:#ffb,stroke:#333`}
+            />
+          </CardContent>
+        </Card>
+
+        <div className="grid md:grid-cols-2 gap-6 mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Understanding the Flow</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li>1️⃣ <strong>You start at the Front Desk</strong> (Login Node)</li>
+                <li>2️⃣ <strong>Submit your request</strong> to the Librarian (SLURM)</li>
+                <li>3️⃣ <strong>Wait in queue</strong> if resources are busy</li>
+                <li>4️⃣ <strong>Get assigned</strong> to Study Rooms (Compute Nodes)</li>
+                <li>5️⃣ <strong>Monitor or cancel</strong> your reservation as needed</li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Key Commands in Context</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li><code className="bg-blue-100 px-2 py-1 rounded">sbatch</code>: Submit a reservation</li>
+                <li><code className="bg-blue-100 px-2 py-1 rounded">salloc</code>: Request immediate access</li>
+                <li><code className="bg-blue-100 px-2 py-1 rounded">squeue</code>: Check waiting list</li>
+                <li><code className="bg-blue-100 px-2 py-1 rounded">scancel</code>: Cancel reservation</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
 
       {/* 1. Node Types */}
       <Section title="1. Understanding Node Types">
