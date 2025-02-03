@@ -8,13 +8,6 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
   </div>
 );
 
-const SubSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="mb-6">
-    <h3 className="text-xl font-semibold mb-3 text-blue-700">{title}</h3>
-    {children}
-  </div>
-);
-
 const ClusterPresentation = () => {
   return (
     <div className="max-w-5xl mx-auto p-8 space-y-10 bg-gray-50">
@@ -142,7 +135,7 @@ const ClusterPresentation = () => {
           <CardContent className="p-6">
             <div className="space-y-6">
               <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
-                <p className="font-bold text-lg text-blue-900 mb-2">Q: Why can't I compile on the login node?</p>
+                <p className="font-bold text-lg text-blue-900 mb-2">Q: Why can&apos;t I compile on the login node?</p>
                 <p className="text-gray-700">A: Login nodes are shared resources. Compilation is CPU-intensive and could affect other users.</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
