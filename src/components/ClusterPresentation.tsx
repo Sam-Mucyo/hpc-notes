@@ -36,10 +36,12 @@ const ClusterPresentation = () => {
             <ClusterDiagram />
           </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-8 bg-gray-50 p-6 rounded-lg shadow-inner">
-          <Card>
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Understanding the Process</h2>
+          <div className="grid md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-lg shadow-inner">
+            <Card>
             <CardHeader>
-              <CardTitle>Understanding the Flow</CardTitle>
+              <CardTitle className="text-lg font-bold text-gray-900">Step by Step Flow</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4 text-gray-700">
@@ -83,7 +85,7 @@ const ClusterPresentation = () => {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Key Commands in Context</CardTitle>
+              <CardTitle className="text-lg font-bold text-gray-900">Essential Commands</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -126,6 +128,7 @@ const ClusterPresentation = () => {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </Section>
 
