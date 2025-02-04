@@ -1,0 +1,21 @@
+{
+  "name": "HPC Notes",
+  "short_name": "HPC Notes",
+  "description": "Interactive guide to High Performance Computing concepts",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1E40AF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}

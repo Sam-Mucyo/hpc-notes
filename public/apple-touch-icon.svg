@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="180" height="180" rx="45" fill="#1E40AF"/>
+  
+  <!-- Cluster nodes representation - scaled up version -->
+  <circle cx="90" cy="90" r="16" fill="#60A5FA"/>
+  <circle cx="124" cy="68" r="14" fill="#93C5FD"/>
+  <circle cx="56" cy="68" r="14" fill="#93C5FD"/>
+  <circle cx="124" cy="112" r="14" fill="#93C5FD"/>
+  <circle cx="56" cy="112" r="14" fill="#93C5FD"/>
+  
+  <!-- Connection lines -->
+  <path d="M90 74L90 106" stroke="#BFDBFE" stroke-width="8"/>
+  <path d="M76 76L110 110" stroke="#BFDBFE" stroke-width="8"/>
+  <path d="M110 76L76 110" stroke="#BFDBFE" stroke-width="8"/>
+</svg>
