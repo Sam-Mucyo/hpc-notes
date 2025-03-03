@@ -10,7 +10,6 @@ const nextConfig = {
   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
   // This is needed to make the build work properly with GitHub Pages
   reactStrictMode: true,
-  swcMinify: true,
 }
 
 module.exports = nextConfig

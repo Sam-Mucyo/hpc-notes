@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -99,7 +99,7 @@ export default function SharedMemory() {
           <CardContent className="pt-6">
             <p className="mb-4 text-gray-700">
               A race condition occurs when multiple threads access and modify shared data simultaneously,
-              leading to unpredictable results. This happens because the threads are "racing" to access
+              leading to unpredictable results. This happens because the threads are &quot;racing&quot; to access
               and modify the same memory location.
             </p>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Example of a Race Condition:</h3>
